@@ -1,0 +1,9 @@
+# Build settings for Render.com
+
+# Backend build
+build:
+  cd server && npm install
+
+# Frontend build  
+build-frontend:
+  cd client && npm install && npm run build

@@ -1,0 +1,17 @@
+{
+  "short_name": "Productivity",
+  "name": "Productivity Dashboard",
+  "description": "Manage tasks, notes, and boost productivity with AI assistance",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#6366f1",
+  "background_color": "#ffffff",
+  "categories": ["productivity", "utilities"]
+}

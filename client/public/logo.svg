@@ -1,0 +1,62 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="256" fill="url(#gradient1)"/>
+  
+  <!-- Gradient definitions -->
+  <defs>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f3f4f6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Cat face -->
+  <g transform="translate(256, 256)">
+    <!-- Head -->
+    <ellipse cx="0" cy="10" rx="110" ry="100" fill="url(#gradient2)" stroke="#6366f1" stroke-width="6"/>
+    
+    <!-- Left ear -->
+    <path d="M -80,-70 L -100,-130 L -50,-90 Z" fill="url(#gradient2)" stroke="#6366f1" stroke-width="4"/>
+    <path d="M -80,-70 L -90,-110 L -60,-80 Z" fill="#fbbf24"/>
+    
+    <!-- Right ear -->
+    <path d="M 80,-70 L 100,-130 L 50,-90 Z" fill="url(#gradient2)" stroke="#6366f1" stroke-width="4"/>
+    <path d="M 80,-70 L 90,-110 L 60,-80 Z" fill="#fbbf24"/>
+    
+    <!-- Left eye -->
+    <ellipse cx="-40" cy="-10" rx="18" ry="28" fill="#6366f1"/>
+    <ellipse cx="-38" cy="-15" rx="8" ry="12" fill="#ffffff"/>
+    
+    <!-- Right eye -->
+    <ellipse cx="40" cy="-10" rx="18" ry="28" fill="#6366f1"/>
+    <ellipse cx="38" cy="-15" rx="8" ry="12" fill="#ffffff"/>
+    
+    <!-- Nose -->
+    <path d="M 0,15 L -8,25 L 8,25 Z" fill="#ec4899"/>
+    
+    <!-- Mouth -->
+    <path d="M 0,25 Q -15,35 -25,30" stroke="#6366f1" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M 0,25 Q 15,35 25,30" stroke="#6366f1" stroke-width="3" fill="none" stroke-linecap="round"/>
+    
+    <!-- Whiskers left -->
+    <line x1="-60" y1="0" x2="-110" y2="-10" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-60" y1="10" x2="-110" y2="10" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-60" y1="20" x2="-110" y2="30" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Whiskers right -->
+    <line x1="60" y1="0" x2="110" y2="-10" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+    <line x1="60" y1="10" x2="110" y2="10" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+    <line x1="60" y1="20" x2="110" y2="30" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Checkmark (productivity symbol) -->
+    <g transform="translate(85, 65) scale(0.6)">
+      <circle cx="0" cy="0" r="25" fill="#10b981" stroke="#ffffff" stroke-width="3"/>
+      <path d="M -8,0 L -3,8 L 10,-10" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+</svg>
