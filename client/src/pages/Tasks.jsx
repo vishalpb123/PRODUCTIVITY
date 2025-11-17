@@ -52,9 +52,10 @@ const Tasks = () => {
     
     try {
       await tasksAPI.delete(id);
-      fetchTasks();
+      await fetchTasks();
     } catch (error) {
-      alert('Failed to delete task');
+      console.error('Delete error:', error);
+      alert(error.response?.data?.message || 'Failed to delete task. Please try again.');
     }
   };
 

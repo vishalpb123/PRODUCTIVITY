@@ -48,16 +48,15 @@ const Notes = () => {
 
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this note?')) return;
-    
+
     try {
       await notesAPI.delete(id);
-      fetchNotes();
+      await fetchNotes();
     } catch (error) {
-      alert('Failed to delete note');
+      console.error('Delete error:', error);
+      alert(error.response?.data?.message || 'Failed to delete note. Please try again.');
     }
-  };
-
-  const handleEdit = (note) => {
+  };  const handleEdit = (note) => {
     setEditingNote(note);
     setFormData({
       title: note.title,

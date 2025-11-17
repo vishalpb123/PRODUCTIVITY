@@ -131,8 +131,8 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Cloud Run sets PORT, fallback to 8080 (not 5000)
-const PORT = process.env.PORT || 8080;
+// Cloud Run sets PORT, fallback to 5000 for local development, 8080 for production
+const PORT = process.env.PORT || 5000;
 
 // Listen on all network interfaces (0.0.0.0) for Cloud Run
 app.listen(PORT, '0.0.0.0', () => {
