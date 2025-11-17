@@ -33,8 +33,23 @@ app.use(helmet({
 }));
 
 // Enable CORS with options
+const allowedOrigins = [
+  process.env.CLIENT_URL,
+  'http://localhost:3000',
+  'http://localhost:5173', // Vite dev server
+].filter(Boolean);
+
 const corsOptions = {
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: (origin, callback) => {
+    // Allow requests with no origin (mobile apps, Postman, etc.)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV === 'development') {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
   optionsSuccessStatus: 200
 };
@@ -116,8 +131,13 @@ app.use((err, req, res, next) => {
   });
 });
 
-const PORT = process.env.PORT || 5000;
+// Cloud Run sets PORT, fallback to 8080 (not 5000)
+const PORT = process.env.PORT || 8080;
 
-app.listen(PORT, () => {
+// Listen on all network interfaces (0.0.0.0) for Cloud Run
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
+  console.log(`Environment: ${process.env.NODE_ENV}`);
+  console.log(`MongoDB: ${process.env.MONGO_URI ? 'Configured' : 'Missing'}`);
+  console.log(`OpenAI: ${process.env.OPENAI_API_KEY ? 'Configured' : 'Missing'}`);
 });

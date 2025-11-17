@@ -66,7 +66,10 @@ export const chatAPI = {
   sendMessage: (data) => api.post('/chat/message', data),
   confirmToolCall: (data) => api.post('/chat/confirm', data),
   getHistory: () => api.get('/chat/history'),
-  clearHistory: () => api.delete('/chat/history'),
+  clearHistory: () => {
+    console.log('🗑️ Clearing chat history...');
+    return api.delete('/chat/history');
+  },
   
   // SSE Streaming method
   streamChat: async (message, conversationHistory = [], onToken, onToolCall) => {
@@ -124,11 +127,22 @@ export const chatAPI = {
                 console.log('🎬 Stream started:', data.message);
               } else if (data.type === 'token' && onToken) {
                 onToken(data.content);
+              } else if (data.type === 'tool_executed') {
+                console.log('✅ Tool executed automatically:', data.result);
+                // Tool was executed automatically, show result
+                if (onToken) {
+                  onToken(`\n\n✅ ${data.result.message}\n`);
+                }
               } else if (data.type === 'tool_call' && onToolCall) {
                 console.log('🔧 Tool call detected:', data.toolCall);
                 onToolCall(data.toolCall);
               } else if (data.type === 'done') {
-                console.log('✅ Stream done');
+                console.log('✅ Stream done', data.executionResult ? 'with execution result' : '');
+                // If there's an execution result, append it to the message
+                if (data.executionResult && onToken) {
+                  const resultEmoji = data.executionResult.success ? '✅' : '❌';
+                  onToken(`\n\n${resultEmoji} ${data.executionResult.message}`);
+                }
               } else if (data.type === 'error') {
                 console.error('❌ Server error:', data.message);
                 throw new Error(data.message);

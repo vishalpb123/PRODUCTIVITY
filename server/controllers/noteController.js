@@ -50,14 +50,19 @@ const deleteNote = async (req, res) => {
   try {
     const note = await Note.findById(req.params.id);
 
+    if (!note) {
+      return res.status(404).json({ message: 'Note not found' });
+    }
+
     if (note.user.toString() !== req.user._id.toString()) {
       return res.status(401).json({ message: 'Not authorized' });
     }
 
-    await note.remove();
-    res.json({ message: 'Note removed' });
+    await Note.deleteOne({ _id: req.params.id });
+    res.json({ message: 'Note removed successfully' });
   } catch (error) {
-    res.status(404).json({ message: 'Note not found' });
+    console.error('Delete note error:', error);
+    res.status(500).json({ message: error.message || 'Failed to delete note' });
   }
 };
 

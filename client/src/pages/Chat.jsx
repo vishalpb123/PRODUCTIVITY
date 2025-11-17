@@ -207,15 +207,24 @@ const Chat = () => {
   };
 
   const handleClearHistory = async () => {
-    if (!window.confirm('Are you sure you want to clear all chat history?')) return;
+    if (!window.confirm('Are you sure you want to clear all chat history? 🗑️')) return;
 
     try {
-      await chatAPI.clearHistory();
+      setLoading(true);
+      const response = await chatAPI.clearHistory();
+      console.log('✅ Clear history response:', response.data);
+      
+      // Clear local state
       setMessages([]);
       setPendingToolCall(null);
+      
+      // Show success message
+      alert(response.data?.message || 'Chat history cleared successfully! 🐾');
     } catch (error) {
-      console.error('Error clearing history:', error);
-      alert('Failed to clear history');
+      console.error('❌ Error clearing history:', error);
+      alert('Failed to clear history: ' + (error.response?.data?.message || error.message));
+    } finally {
+      setLoading(false);
     }
   };
 
